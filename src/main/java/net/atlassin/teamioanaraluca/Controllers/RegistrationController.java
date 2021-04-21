@@ -27,10 +27,26 @@ public class RegistrationController {
     @FXML
     public void handleRegisterAction() {
         try {
-            UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
-            registrationMessage.setText("Account created successfully!");
+            if (validateRegisterCredentials(passwordField.getText())) {
+                UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
+                registrationMessage.setText("Account created successfully!");
+            }
         } catch (UsernameAlreadyExistsException e) {
             registrationMessage.setText(e.getMessage());
         }
+    }
+
+    public boolean validateRegisterCredentials(String password) {
+        if (password.equals("")) {
+            registrationMessage.setText("Password cannot be empty!");
+            return false;
+        } else if (password.length()<8){
+            registrationMessage.setText("Password should be at least 8 characters!");
+            return false;
+        } else if (!( password.matches(".*[0-9]{1,}.*") && password.matches(".*[A-Z]{1,}.*"))){
+            registrationMessage.setText("Password should contain at least one digit and one upper case character!");
+            return false;
+        }
+        return true;
     }
 }
