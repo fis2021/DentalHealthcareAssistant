@@ -13,3 +13,4 @@ public class UsernameAlreadyExistsException extends Exception {
         return username;
     }
 }
+
