@@ -5,6 +5,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import net.atlassin.teamioanaraluca.Exceptions.InvalidCustomerEmailException;
+import net.atlassin.teamioanaraluca.Exceptions.InvalidDoctorEmailException;
 import net.atlassin.teamioanaraluca.Exceptions.UsernameAlreadyExistsException;
 import net.atlassin.teamioanaraluca.Services.UserService;
 
@@ -37,8 +39,12 @@ public class RegistrationController {
                 UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue(), nameField.getText(), emailField.getText(), phoneNumberField.getText());
                 registrationMessage.setText("Account created successfully!");
             }
-        } catch (UsernameAlreadyExistsException e) {
-            registrationMessage.setText(e.getMessage());
+        } catch (UsernameAlreadyExistsException e1) {
+            registrationMessage.setText(e1.getMessage());
+        } catch (InvalidDoctorEmailException e2) {
+            registrationMessage.setText(e2.getMessage());
+        } catch (InvalidCustomerEmailException e3) {
+            registrationMessage.setText(e3.getMessage());
         }
     }
 
