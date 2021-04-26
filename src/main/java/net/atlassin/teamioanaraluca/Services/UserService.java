@@ -30,6 +30,7 @@ public class UserService {
     public static void addUser(String username, String password, String role, String name, String email, String phoneNumber) throws UsernameAlreadyExistsException, InvalidDoctorEmailException, InvalidCustomerEmailException, InvalidCredentialsException {
         checkUsername(username);
         checkUserDoesNotAlreadyExist(username);
+        checkPassword(password);
         if(Objects.equals(role, "Dentist"))
         {
             checkEmailAddressDoctor(email);
@@ -73,6 +74,25 @@ public class UserService {
         }
     }
 
+    private static void checkPassword(String password) throws InvalidCredentialsException{
+        int ok = 1;
+        String message = "";
+        if (password.equals("")) {
+            message = "Password cannot be empty!";
+            ok = 0;
+        } else if (password.length()<8){
+            message = "Password should be at least 8 characters!";
+            ok = 0;
+        } else if (!( password.matches(".*[0-9]{1,}.*") && password.matches(".*[A-Z]{1,}.*"))){
+            message = "Password should contain at least one digit and one upper case character!";
+            ok = 0;
+        }
+
+        if (ok==0){
+            throw new InvalidCredentialsException(message);
+        }
+
+    }
     private static void checkEmailAddressDoctor(String email) throws InvalidDoctorEmailException {
         String extensionDoctor = "@doctor.com";
         int i, j, k, sw = 0;

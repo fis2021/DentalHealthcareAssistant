@@ -36,10 +36,9 @@ public class RegistrationController {
     @FXML
     public void handleRegisterAction() {
         try {
-            if (validateRegisterCredentials(passwordField.getText())) {
                 UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue(), nameField.getText(), emailField.getText(), phoneNumberField.getText());
                 registrationMessage.setText("Account created successfully!");
-            }
+
         } catch (UsernameAlreadyExistsException e1) {
             registrationMessage.setText(e1.getMessage());
         } catch (InvalidDoctorEmailException e2) {
@@ -51,17 +50,5 @@ public class RegistrationController {
         }
     }
 
-    public boolean validateRegisterCredentials(String password) {
-        if (password.equals("")) {
-            registrationMessage.setText("Password cannot be empty!");
-            return false;
-        } else if (password.length()<8){
-            registrationMessage.setText("Password should be at least 8 characters!");
-            return false;
-        } else if (!( password.matches(".*[0-9]{1,}.*") && password.matches(".*[A-Z]{1,}.*"))){
-            registrationMessage.setText("Password should contain at least one digit and one upper case character!");
-            return false;
-        }
-        return true;
-    }
+
 }
