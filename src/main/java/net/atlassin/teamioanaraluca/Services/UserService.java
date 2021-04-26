@@ -38,6 +38,7 @@ public class UserService {
         {
             checkEmailAddressCustomer(email);
         }
+        checkPhoneNumber(phoneNumber);
         userRepository.insert(new User(username, encodePassword(password), role, name, email, phoneNumber));
     }
 
@@ -141,6 +142,20 @@ public class UserService {
         }
     }
 
+    private static void checkPhoneNumber(String phone) throws InvalidCredentialsException{
+        int ok = 1;
+        String message = "";
+        String regex = "\\d{10}";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(phone);
+        if (!m.matches()){
+            ok = 0;
+            message = "Invalid phone number! Must contain only 10 digits.";
+        }
+        if (ok==0){
+            throw new InvalidCredentialsException(message);
+        }
+    }
     /**
      * Hashing the password for storage using PBKDF2.
      *
