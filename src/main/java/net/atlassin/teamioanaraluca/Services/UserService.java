@@ -1,5 +1,6 @@
 package net.atlassin.teamioanaraluca.Services;
 
+import net.atlassin.teamioanaraluca.Exceptions.InvalidCredentialsException;
 import net.atlassin.teamioanaraluca.Exceptions.InvalidCustomerEmailException;
 import net.atlassin.teamioanaraluca.Exceptions.InvalidDoctorEmailException;
 import org.dizitart.no2.Nitrite;
@@ -11,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
-
+import java.util.regex.*;
 import static net.atlassin.teamioanaraluca.Services.FileSystemService.getPathToFile;
 
 public class UserService {
@@ -20,13 +21,14 @@ public class UserService {
 
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
-                .filePath(getPathToFile(" .db").toFile())
+                .filePath(getPathToFile("registration-example.db").toFile())
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
     }
 
-    public static void addUser(String username, String password, String role, String name, String email, String phoneNumber) throws UsernameAlreadyExistsException, InvalidDoctorEmailException, InvalidCustomerEmailException {
+    public static void addUser(String username, String password, String role, String name, String email, String phoneNumber) throws UsernameAlreadyExistsException, InvalidDoctorEmailException, InvalidCustomerEmailException, InvalidCredentialsException {
+        checkUsername(username);
         checkUserDoesNotAlreadyExist(username);
         if(Objects.equals(role, "Dentist"))
         {
@@ -43,6 +45,30 @@ public class UserService {
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
+        }
+    }
+    private static void checkUsername(String username) throws InvalidCredentialsException{
+        int ok = 1;
+        String message = "";
+        if (username.equals("")) {
+            ok = 0;
+            message = "Username cannot be empty!";
+        } else if (username.length()<6){
+            message = "Username should be at least 6 characters!";
+            ok = 0;
+        }else{
+            String regex = "^[A-Za-z]\\w{5,}$";
+            Pattern p = Pattern.compile(regex);
+            Matcher m = p.matcher(username);
+            if (!m.matches()){
+                ok = 0;
+                message = "Username should contain only letters, digits and underscore(_) and should start with a letter!";
+            }
+        }
+
+
+        if (ok==0){
+            throw new InvalidCredentialsException(message);
         }
     }
 

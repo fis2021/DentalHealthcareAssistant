@@ -5,6 +5,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import net.atlassin.teamioanaraluca.Exceptions.InvalidCredentialsException;
 import net.atlassin.teamioanaraluca.Exceptions.InvalidCustomerEmailException;
 import net.atlassin.teamioanaraluca.Exceptions.InvalidDoctorEmailException;
 import net.atlassin.teamioanaraluca.Exceptions.UsernameAlreadyExistsException;
@@ -45,6 +46,8 @@ public class RegistrationController {
             registrationMessage.setText(e2.getMessage());
         } catch (InvalidCustomerEmailException e3) {
             registrationMessage.setText(e3.getMessage());
+        }catch (InvalidCredentialsException e4){
+            registrationMessage.setText(e4.getMessage());
         }
     }
 
