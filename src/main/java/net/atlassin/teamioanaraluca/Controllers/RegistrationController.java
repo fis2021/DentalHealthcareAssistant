@@ -1,10 +1,15 @@
 package net.atlassin.teamioanaraluca.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import net.atlassin.teamioanaraluca.Exceptions.InvalidCredentialsException;
 import net.atlassin.teamioanaraluca.Exceptions.InvalidCustomerEmailException;
 import net.atlassin.teamioanaraluca.Exceptions.InvalidDoctorEmailException;
@@ -48,6 +53,15 @@ public class RegistrationController {
         }catch (InvalidCredentialsException e4){
             registrationMessage.setText(e4.getMessage());
         }
+    }
+
+    public void goToLoginScene(javafx.event.ActionEvent login) throws Exception{
+        Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("Login.fxml"));
+        Stage window = (Stage)((Node)login.getSource()).getScene().getWindow();
+        window.setTitle("Login");
+        window.setScene(new Scene(root1,600,460));
+        window.show();
+
     }
 
 
