@@ -40,11 +40,11 @@ public class LoginController {
             loginUsernameMessage.setText("Login successfully!");
             loggedUser = UserService.getLoggedUser(usernameField.getText());
             userRole = UserService.getUserRole(usernameField.getText());
-            if (userRole.equals("Dentist")) {
-                loginUsernameMessage.setText("Mesaj provizoriu");
-            } else {
-                loginUsernameMessage.setText("Mesaj provizoriu");
-            }
+                // if (userRole.equals("Dentist")) {
+               // loginUsernameMessage.setText("Mesaj provizoriu");
+              //} else {
+            //    loginUsernameMessage.setText("Mesaj provizoriu");
+           // }
         } catch (UsernameDoesNotExistException e) {
             loginUsernameMessage.setText(e.getMessage());
         } catch (WrongRoleException e) {

@@ -192,13 +192,14 @@ public class UserService {
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername())) {
                 oku = 1;
+                if (PasswordAuthentication.authenticate(password, user.getPassword())) {
+                    okp = 1;
+                }
             }
             if (Objects.equals(role, user.getRole())) {
                 okr = 1;
             }
-            if (PasswordAuthentication.authenticate(user.getPassword(), encodePassword(password))) {
-                okp = 1;
-            }
+
         }
         if (oku == 0)
             throw new UsernameDoesNotExistException(username);
