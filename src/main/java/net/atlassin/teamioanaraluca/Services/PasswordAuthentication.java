@@ -80,7 +80,7 @@ public final class PasswordAuthentication
      *
      * @return true if the password and token match
      */
-    public boolean authenticate(char[] password, String token)
+    public static boolean authenticate(char[] password, String token)
     {
         Matcher m = layout.matcher(token);
         if (!m.matches())
@@ -132,7 +132,7 @@ public final class PasswordAuthentication
      * @see #hash(String)
      */
     @Deprecated
-    public boolean authenticate(String password, String token)
+    public static boolean authenticate(String password, String token)
     {
         return authenticate(password.toCharArray(), token);
     }
