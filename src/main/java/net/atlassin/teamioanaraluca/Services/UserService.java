@@ -168,24 +168,6 @@ public class UserService {
         }
     }
 
-    public static String getLoggedUser(String username) {
-        for (User user : userRepository.find()) {
-            if (Objects.equals(username, user.getUsername()))
-                return username;
-        }
-        return "";
-    }
-
-    public static String getUserRole(String username) {
-        for (User user : userRepository.find()) {
-            if (Objects.equals(username, user.getUsername()))
-                if (Objects.equals(user.getRole(), "Customer"))
-                    return "Customer";
-                else
-                    return "Dentist";
-        }
-        return "";
-    }
 
     public static void checkUserCredentials(String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
         int oku = 0, okp = 0, okr = 0;
