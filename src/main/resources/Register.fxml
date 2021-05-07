@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.atlassin.teamioanaraluca.Controllers.RegistrationController">
+<GridPane alignment="center" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="599.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.atlassin.teamioanaraluca.Controllers.RegistrationController">
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
     </padding>
@@ -31,7 +31,7 @@
     <TextField fx:id="emailField" GridPane.columnIndex="2" GridPane.rowIndex="6" />
     <Label text="Email" GridPane.columnIndex="1" GridPane.rowIndex="6" />
     <Label text="Phone number" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-    <Hyperlink accessibleText="Already have an  account? Sign in!" opacity="0.94" text="Already have an account? Sign in!" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    <Hyperlink accessibleText="Already have an  account? Sign in!" opacity="0.94" onAction="#goToLoginScene" text="Already have an account? Sign in!" GridPane.columnIndex="1" GridPane.rowIndex="9" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="2" GridPane.rowIndex="8">
         <Button onAction="#handleRegisterAction" text="Register" />
     </HBox>
