@@ -3,29 +3,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="600.0"
-            style="-fx-background-color: #FEC8D8;" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" style="-fx-background-color: #FEC8D8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="net.atlassin.teamioanaraluca.Controllers.MyServicesController">
     <GridPane alignment="BOTTOM_CENTER" layoutX="1.0" layoutY="371.0" prefHeight="35.0" prefWidth="600.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.6" minWidth="10.0" prefWidth="199.6"/>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.2" minWidth="10.0" prefWidth="206.8"/>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.6" minWidth="10.0" prefWidth="193.60000000000002"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.6" minWidth="10.0" prefWidth="199.6" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.2" minWidth="10.0" prefWidth="206.8" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.6" minWidth="10.0" prefWidth="193.60000000000002" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="37.600006103515625" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="37.600006103515625" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="201.0"
-                    style="-fx-background-color: #DABFDE;" text="Add service"/>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="238.0"
-                    style="-fx-background-color: #DABFDE;" text="Delete service" GridPane.columnIndex="1"/>
-            <Button alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="36.0" prefWidth="217.0"
-                    style="-fx-background-color: #DABFDE;" text="Edit service" GridPane.columnIndex="2"/>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="201.0" style="-fx-background-color: #DABFDE;" text="Add service" />
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="238.0" style="-fx-background-color: #DABFDE;" text="Delete service" GridPane.columnIndex="1" />
+            <Button alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #DABFDE;" text="Edit service" GridPane.columnIndex="2" />
         </children>
     </GridPane>
-    <ListView layoutX="191.0" layoutY="14.0" prefHeight="340.0" prefWidth="220.0"
-              style="-fx-background-color: #FFF1F2; -fx-border-width: 3; -fx-border-style: solid inside; -fx-border-color: #6232b1;"
-              AnchorPane.topAnchor="14.0"/>
+    <ListView fx:id="serviceListView" layoutX="204.0" layoutY="14.0" prefHeight="338.0" prefWidth="207.0" style="-fx-background-color: #FFF1F2; -fx-border-width: 3; -fx-border-style: solid inside; -fx-border-color: #6232b1;" AnchorPane.topAnchor="14.0" />
+   <TextField fx:id="serviceDescription" layoutX="26.0" layoutY="320.0" style="-fx-background-color: #FFF1F2; -fx-border-width: 3; -fx-border-style: solid inside; -fx-border-color: #6232b1;" />
 
 </AnchorPane>
