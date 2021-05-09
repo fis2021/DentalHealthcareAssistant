@@ -1,11 +1,16 @@
 package net.atlassin.teamioanaraluca.Model;
 
 public class DentistServices {
-    private static String username;
-    private static String name;
+    private String username;
     private String description;
+    private static String whoIsLogged;
 
-    public DentistServices(String description) {
+    public DentistServices() {
+    }
+
+    public DentistServices(String username, String description) {
+        this.username = username;
+
         this.description = description;
     }
 
@@ -13,23 +18,27 @@ public class DentistServices {
         return description;
     }
 
-    public static String getUsername() {
+    public  String getUsername() {
         return username;
     }
 
-    public static String getName() {
-        return name;
+
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public static void setUsername(String username) {
-        DentistServices.username = username;
-    }
 
-    public static void setName(String name) {
-        DentistServices.name = name;
-    }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public static void setWhoIsLogged(String whoIsLogged) {
+        DentistServices.whoIsLogged = whoIsLogged;
+    }
+
+    public static String getWhoIsLogged() {
+        return whoIsLogged;
     }
 }
