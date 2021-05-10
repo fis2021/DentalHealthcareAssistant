@@ -1,10 +1,11 @@
 package net.atlassin.teamioanaraluca.Model;
 
-public class DentistServices {
+
+import org.dizitart.no2.RemoveOptions;
+
+public class DentistServices extends RemoveOptions {
     private String username;
     private String description;
-    private static String whoIsLogged;
-
     public DentistServices() {
     }
 
@@ -34,11 +35,5 @@ public class DentistServices {
         this.description = description;
     }
 
-    public static void setWhoIsLogged(String whoIsLogged) {
-        DentistServices.whoIsLogged = whoIsLogged;
-    }
 
-    public static String getWhoIsLogged() {
-        return whoIsLogged;
-    }
 }

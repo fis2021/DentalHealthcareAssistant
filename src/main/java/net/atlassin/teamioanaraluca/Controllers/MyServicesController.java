@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import net.atlassin.teamioanaraluca.Exceptions.DentistServiceExistsException;
 import net.atlassin.teamioanaraluca.Exceptions.EmptyTextfieldsException;
 import net.atlassin.teamioanaraluca.Model.DentistServices;
+import net.atlassin.teamioanaraluca.Model.WhoIsLoggedInfo;
 import net.atlassin.teamioanaraluca.Services.DentistFacilitiesService;
 import org.dizitart.no2.objects.ObjectRepository;
 
@@ -37,7 +38,7 @@ public class MyServicesController {
 
     public void handleAddServiceAction() throws Exception{
         try{
-            DentistFacilitiesService.addService(DentistServices.getWhoIsLogged(),serviceDescription.getText());
+            DentistFacilitiesService.addService(WhoIsLoggedInfo.getLoggedUsername(),serviceDescription.getText());
             updateListView();
             addMessage.setText("Service added successfully !");
         }
@@ -56,12 +57,15 @@ public class MyServicesController {
         window.show();
 
     }
-
+    public void handleDeleteServiceAction() throws Exception{
+        DentistFacilitiesService.deleteService(WhoIsLoggedInfo.getLoggedUsername(),serviceListView.getSelectionModel().getSelectedItem().toString());
+        updateListView();
+    }
 
     public void updateListView(){
         ObservableList<String> items = FXCollections.observableArrayList();
         for (DentistServices service : servicesRepository.find()) {
-            if (DentistServices.getWhoIsLogged().equals(service.getUsername())) { //////AICI!!!!??
+            if (WhoIsLoggedInfo.getLoggedUsername().equals(service.getUsername())) { //////AICI!!!!??
                 items.add(service.getDescription());
                 serviceListView.setItems(items);
             }

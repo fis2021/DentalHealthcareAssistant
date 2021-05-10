@@ -14,6 +14,7 @@ import net.atlassin.teamioanaraluca.Exceptions.UsernameDoesNotExistException;
 import net.atlassin.teamioanaraluca.Exceptions.WrongPasswordException;
 import net.atlassin.teamioanaraluca.Exceptions.WrongRoleException;
 import net.atlassin.teamioanaraluca.Model.DentistServices;
+import net.atlassin.teamioanaraluca.Model.WhoIsLoggedInfo;
 import net.atlassin.teamioanaraluca.Services.UserService;
 
 public class LoginController {
@@ -40,7 +41,7 @@ public class LoginController {
             loginUsernameMessage.setText("Login successfully!");
             userRole = (String) role.getValue();
             if (userRole.equals("Dentist")) {
-                DentistServices.setWhoIsLogged(usernameField.getText()); //Added this to see who is logged (which username)
+                WhoIsLoggedInfo.setLoggedUsername(usernameField.getText()); //Added this to see who is logged (which username)
                 Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("DentistGUI.fxml"));
                 Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();
                 ;
