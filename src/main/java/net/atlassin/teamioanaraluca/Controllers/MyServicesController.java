@@ -3,9 +3,14 @@ package net.atlassin.teamioanaraluca.Controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import net.atlassin.teamioanaraluca.Exceptions.DentistServiceExistsException;
 import net.atlassin.teamioanaraluca.Exceptions.EmptyTextfieldsException;
 import net.atlassin.teamioanaraluca.Model.DentistServices;
@@ -42,6 +47,14 @@ public class MyServicesController {
         catch(DentistServiceExistsException e){
             addMessage.setText(e.getMessage());
         }
+    }
+    public void goToDentistGUI(javafx.event.ActionEvent dentistGUI) throws Exception{
+        Parent root4 = FXMLLoader.load(getClass().getClassLoader().getResource("DentistGUI.fxml"));
+        Stage window = (Stage)((Node)dentistGUI.getSource()).getScene().getWindow();
+        window.setTitle("DentistGUI");
+        window.setScene(new Scene(root4,600,460));
+        window.show();
+
     }
 
 
