@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -19,6 +21,7 @@ import net.atlassin.teamioanaraluca.Services.DentistFacilitiesService;
 import org.dizitart.no2.objects.ObjectRepository;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class MyServicesController {
     private static ObjectRepository<DentistServices> servicesRepository = DentistFacilitiesService.getServicesRepository();
@@ -58,7 +61,20 @@ public class MyServicesController {
 
     }
     public void handleDeleteServiceAction() throws Exception{
-        DentistFacilitiesService.deleteService(WhoIsLoggedInfo.getLoggedUsername(),serviceListView.getSelectionModel().getSelectedItem().toString());
+        if (serviceListView.getSelectionModel().getSelectedItem()==null){
+            addMessage.setText("No service selected!");
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Message");
+            alert.setHeaderText("Are you sure you want to delete the service?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get().equals(ButtonType.OK)) {
+                DentistFacilitiesService.deleteService(WhoIsLoggedInfo.getLoggedUsername(),serviceListView.getSelectionModel().getSelectedItem().toString());
+
+                addMessage.setText("Service deleted successfully !");
+            }
+        }
         updateListView();
     }
 
