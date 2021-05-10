@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import net.atlassin.teamioanaraluca.Exceptions.DentistServiceExistsException;
@@ -33,7 +30,12 @@ public class MyServicesController {
     public ListView<String> serviceListView = new ListView<String>();
     @FXML
     public Text addMessage;
-
+    @FXML
+    public Text editMessage;
+    @FXML
+    private TextField serviceEdit;
+    @FXML
+    private Button saveChangesButton;
     @FXML
     public void initialize() throws IOException {
         updateListView();
@@ -78,6 +80,35 @@ public class MyServicesController {
         updateListView();
     }
 
+    public void handleEditServiceAction() throws Exception{
+        if (serviceListView.getSelectionModel().getSelectedItem()==null){
+            addMessage.setText("No service selected!");
+        }
+        else{
+            editMessage.setVisible(true);
+            serviceEdit.setVisible(true);
+            saveChangesButton.setVisible(true);
+            editMessage.setText("Type new service below:");
+        }
+    }
+
+    public void handleSaveEditChanges() throws Exception{
+        try{
+            DentistFacilitiesService.editService(WhoIsLoggedInfo.getLoggedUsername(),serviceListView.getSelectionModel().getSelectedItem().toString(),serviceEdit.getText());
+            updateListView();
+            addMessage.setText("Service edited successfully !");
+            editMessage.setVisible(false);
+            serviceEdit.setVisible(false);
+            saveChangesButton.setVisible(false);
+
+        }
+        catch (EmptyTextfieldsException e){
+            editMessage.setText(e.getMessage());
+        }
+        catch(DentistServiceExistsException e){
+            editMessage.setText(e.getMessage());
+        }
+    }
     public void updateListView(){
         ObservableList<String> items = FXCollections.observableArrayList();
         for (DentistServices service : servicesRepository.find()) {
