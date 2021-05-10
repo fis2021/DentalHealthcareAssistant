@@ -21,7 +21,6 @@ public class DentistController {
     public void handleMyServicesAction(javafx.event.ActionEvent myServices) throws Exception {
         Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("MyServicesGUI.fxml"));
         Stage window = (Stage) ((Node) myServices.getSource()).getScene().getWindow();
-        ;
         window.setTitle("My Services");
         window.setScene(new Scene(root1, 600, 406));
         window.show();
