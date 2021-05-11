@@ -49,8 +49,12 @@ public class LoginController {
                 window.setScene(new Scene(root2, 600, 460));
                 window.show();
 
-            } else {
-                loginUsernameMessage.setText("Mesaj provizoriu");
+            } else if (userRole.equals("Customer")) {
+                Parent root3 = FXMLLoader.load(getClass().getClassLoader().getResource("PatientGUI.fxml"));
+                Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();
+                window.setTitle("CustomerGUI");
+                window.setScene(new Scene(root3, 600, 460));
+                window.show();
             }
         } catch (UsernameDoesNotExistException e) {
             loginUsernameMessage.setText(e.getMessage());
