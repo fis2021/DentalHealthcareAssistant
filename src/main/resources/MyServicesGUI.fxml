@@ -17,14 +17,17 @@
         <children>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleAddServiceAction" prefHeight="36.0" prefWidth="201.0" style="-fx-background-color: #DABFDE;" text="Add service" />
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleDeleteServiceAction" prefHeight="36.0" prefWidth="238.0" style="-fx-background-color: #DABFDE;" text="Delete service" GridPane.columnIndex="1" />
-            <Button alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #DABFDE;" text="Edit service" GridPane.columnIndex="2" />
+            <Button alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleEditServiceAction" prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #DABFDE;" text="Edit service" GridPane.columnIndex="2" />
         </children>
        
     </GridPane>
     <ListView fx:id="serviceListView" editable="true" layoutX="204.0" layoutY="14.0" prefHeight="338.0" prefWidth="207.0" style="-fx-background-color: #FFF1F2; -fx-border-width: 3; -fx-border-style: solid inside; -fx-border-color: #6232b1;" AnchorPane.topAnchor="14.0" />
    <TextField fx:id="serviceDescription" layoutX="26.0" layoutY="320.0" style="-fx-background-color: #FFF1F2; -fx-border-width: 3; -fx-border-style: solid inside; -fx-border-color: #6232b1;" />
    <Text fx:id="addMessage" layoutX="26.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="155.2" />
-   <Button contentDisplay="TOP" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToDentistGUI" prefHeight="36.0" prefWidth="155.0" style="-fx-background-color: #DABFDE; -fx-border-style: solidinside;" text="Go back" textAlignment="CENTER" />
+   <Button alignment="CENTER" contentDisplay="TOP" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToDentistGUI" prefHeight="36.0" prefWidth="155.0" style="-fx-background-color: #DABFDE;" text="Go back" textAlignment="CENTER" />
+   <Text fx:id="editMessage" layoutX="422.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="163.13671875" />
+   <TextField fx:id="serviceEdit" layoutX="429.0" layoutY="292.0" style="-fx-background-color: #FFF1F2;" visible="false" />
+   <Button fx:id="saveChangesButton" alignment="CENTER" layoutX="458.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleSaveEditChanges" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: #DABFDE;" text="Save changes" visible="false" />
 
 
 

@@ -41,6 +41,22 @@ public class DentistFacilitiesService {
 
         servicesRepository.remove(eq("description",description),service_aux);
     }
+
+    public static void editService(String username,String descriptionOld,String descriptionNew)throws EmptyTextfieldsException, DentistServiceExistsException{
+        checkEmptyTextFields(descriptionNew);
+        checkServiceExists(descriptionNew);
+        DentistServices service_aux = new DentistServices();
+
+        for (DentistServices service : servicesRepository.find()){
+            if (username.equals(service.getUsername())&&descriptionOld.equals(service.getDescription())) {
+                service_aux = service;
+            }
+        }
+        if(!descriptionNew.equals(""))
+            service_aux.setDescription(descriptionNew);
+        servicesRepository.update(eq("description",descriptionOld),service_aux);
+    }
+
     private static void checkEmptyTextFields(String description) throws EmptyTextfieldsException {
         if (description.equals(""))
             throw new EmptyTextfieldsException();
