@@ -22,7 +22,7 @@ import net.atlassin.teamioanaraluca.Exceptions.WrongRoleException;
 
 public class UserService {
 
-    private static ObjectRepository<User> userRepository;
+    public static ObjectRepository<User> userRepository;
 
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
