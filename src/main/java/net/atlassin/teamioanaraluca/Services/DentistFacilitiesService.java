@@ -8,9 +8,11 @@ import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 
 import java.util.Objects;
+
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
+
 public class DentistFacilitiesService {
-    private static ObjectRepository<DentistServices> servicesRepository;
+    public static ObjectRepository<DentistServices> servicesRepository;
 
     public static ObjectRepository<DentistServices> getServicesRepository() {
         return servicesRepository;
@@ -24,37 +26,37 @@ public class DentistFacilitiesService {
         servicesRepository = database.getRepository(DentistServices.class);
     }
 
-    public static void addService(String username, String description) throws EmptyTextfieldsException, DentistServiceExistsException{
+    public static void addService(String username, String description) throws EmptyTextfieldsException, DentistServiceExistsException {
         checkEmptyTextFields(description);
         checkServiceExists(description);
-        servicesRepository.insert(new DentistServices(username,description));
+        servicesRepository.insert(new DentistServices(username, description));
     }
 
-    public static void deleteService(String username,String description){
+    public static void deleteService(String username, String description) {
         DentistServices service_aux = new DentistServices();
 
-        for (DentistServices service : servicesRepository.find()){
-            if (username.equals(service.getUsername())&&description.equals(service.getDescription())) {
+        for (DentistServices service : servicesRepository.find()) {
+            if (username.equals(service.getUsername()) && description.equals(service.getDescription())) {
                 service_aux = service;
             }
         }
 
-        servicesRepository.remove(eq("description",description),service_aux);
+        servicesRepository.remove(eq("description", description), service_aux);
     }
 
-    public static void editService(String username,String descriptionOld,String descriptionNew)throws EmptyTextfieldsException, DentistServiceExistsException{
+    public static void editService(String username, String descriptionOld, String descriptionNew) throws EmptyTextfieldsException, DentistServiceExistsException {
         checkEmptyTextFields(descriptionNew);
         checkServiceExists(descriptionNew);
         DentistServices service_aux = new DentistServices();
 
-        for (DentistServices service : servicesRepository.find()){
-            if (username.equals(service.getUsername())&&descriptionOld.equals(service.getDescription())) {
+        for (DentistServices service : servicesRepository.find()) {
+            if (username.equals(service.getUsername()) && descriptionOld.equals(service.getDescription())) {
                 service_aux = service;
             }
         }
-        if(!descriptionNew.equals(""))
+        if (!descriptionNew.equals(""))
             service_aux.setDescription(descriptionNew);
-        servicesRepository.update(eq("description",descriptionOld),service_aux);
+        servicesRepository.update(eq("description", descriptionOld), service_aux);
     }
 
     private static void checkEmptyTextFields(String description) throws EmptyTextfieldsException {
@@ -62,13 +64,13 @@ public class DentistFacilitiesService {
             throw new EmptyTextfieldsException();
     }
 
-    private static void checkServiceExists(String description)  throws DentistServiceExistsException {
+    private static void checkServiceExists(String description) throws DentistServiceExistsException {
 
         int ok = 0;
-        for (DentistServices service : servicesRepository.find()){
+        for (DentistServices service : servicesRepository.find()) {
             if (WhoIsLoggedInfo.getLoggedUsername().equals(service.getUsername()))
                 if (description.equals(service.getDescription()))
-                ok = 1;
+                    ok = 1;
         }
 
         if (ok == 1) throw new DentistServiceExistsException();
