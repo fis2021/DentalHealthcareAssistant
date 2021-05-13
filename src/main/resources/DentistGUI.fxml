@@ -40,13 +40,14 @@
                                         vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
-                        <Button onAction="#handleMyServicesAction" alignment="CENTER" mnemonicParsing="false"
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleMyServicesAction"
                                 prefHeight="38.0" prefWidth="171.0" style="-fx-background-color: #DABFDE;"
                                 text="My services"/>
                         <Button alignment="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="257.0"
                                 style="-fx-background-color: #DABFDE;" text="Today's appointments"
                                 GridPane.columnIndex="1"/>
-                        <Button alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0"
+                        <Button fx:id="appointmentRequest" alignment="CENTER" maxWidth="-Infinity"
+                                mnemonicParsing="false" onAction="#handleGoToPendingAppointments" prefHeight="38.0"
                                 prefWidth="230.0" style="-fx-background-color: #DABFDE;" text="Appointment request"
                                 GridPane.columnIndex="2"/>
                     </children>
