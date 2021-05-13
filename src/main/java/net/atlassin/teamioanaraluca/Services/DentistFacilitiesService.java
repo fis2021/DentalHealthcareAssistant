@@ -1,5 +1,6 @@
 package net.atlassin.teamioanaraluca.Services;
 
+import net.atlassin.teamioanaraluca.Exceptions.CabinetDoesNotExist;
 import net.atlassin.teamioanaraluca.Exceptions.DentistServiceExistsException;
 import net.atlassin.teamioanaraluca.Exceptions.EmptyTextfieldsException;
 import net.atlassin.teamioanaraluca.Model.DentistServices;
@@ -74,7 +75,21 @@ public class DentistFacilitiesService {
         }
 
         if (ok == 1) throw new DentistServiceExistsException();
-
     }
+
+    public static void checkCabinetExists(String cabinetName) throws CabinetDoesNotExist {
+
+        int sw = 1;
+        for (DentistServices service : servicesRepository.find()) {
+            if (Objects.equals(cabinetName, service.getUsername())) {
+                sw = 0;
+            }
+        }
+
+        if (sw == 1) {
+            throw new CabinetDoesNotExist();
+        }
+    }
+
 
 }
