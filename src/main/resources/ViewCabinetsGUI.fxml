@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="431.0" prefWidth="479.0"
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="456.0" prefWidth="479.0"
             style="-fx-background-color: #D4F1F4;" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="net.atlassin.teamioanaraluca.Controllers.ViewCabinetsController">
@@ -22,9 +22,10 @@
     <Label alignment="CENTER" layoutX="165.0" layoutY="330.0" prefHeight="17.0" prefWidth="149.0"
            text="Fill in the desired cabinet"/>
     <TextField fx:id="cabinetName" layoutX="165.0" layoutY="356.0"/>
-    <Button fx:id="accessCabinetServices" layoutX="214.0" layoutY="392.0" mnemonicParsing="false"
+    <Button fx:id="cabinetServices" layoutX="214.0" layoutY="392.0" mnemonicParsing="false"
             onAction="#handleAccessCabinetServices" prefHeight="25.0" prefWidth="52.0"
             style="-fx-background-color: #A7C7E7;" text="Access"/>
+    <Text fx:id="errorMessage" layoutX="165.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
 
 
 </AnchorPane>
