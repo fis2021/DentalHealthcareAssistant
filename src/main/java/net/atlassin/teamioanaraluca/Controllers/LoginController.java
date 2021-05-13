@@ -50,6 +50,7 @@ public class LoginController {
                 window.show();
 
             } else if (userRole.equals("Customer")) {
+                WhoIsLoggedInfo.setLoggedUsername(usernameField.getText()); //Added this to see who is logged (which username)
                 Parent root3 = FXMLLoader.load(getClass().getClassLoader().getResource("PatientGUI.fxml"));
                 Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();
                 window.setTitle("CustomerGUI");

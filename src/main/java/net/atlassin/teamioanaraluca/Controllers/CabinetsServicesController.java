@@ -7,9 +7,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import net.atlassin.teamioanaraluca.Exceptions.AppointmentPendingException;
+import net.atlassin.teamioanaraluca.Exceptions.DentistServiceExistsException;
+import net.atlassin.teamioanaraluca.Exceptions.EmptyTextfieldsException;
 import net.atlassin.teamioanaraluca.Model.DentistServices;
 import net.atlassin.teamioanaraluca.Model.WhatDoctorAmIAppointedTo;
+import net.atlassin.teamioanaraluca.Model.WhoIsLoggedInfo;
+import net.atlassin.teamioanaraluca.Services.AppointmentsService;
 import net.atlassin.teamioanaraluca.Services.DentistFacilitiesService;
 import org.dizitart.no2.objects.ObjectRepository;
 
@@ -24,6 +30,8 @@ public class CabinetsServicesController {
     public Button cabinetsList;
     @FXML
     public ListView servicesList;
+    @FXML
+    public Text addAppMessage;
 
     public void Set(){
 
@@ -51,6 +59,13 @@ public class CabinetsServicesController {
     }
 
     public void handleMakeAnAppointment(ActionEvent makeAnAppointment) {
-
+        try{
+            AppointmentsService.addAppointment(WhoIsLoggedInfo.getLoggedUsername(),WhatDoctorAmIAppointedTo.getDoctorName(),"","","pending","","");
+            addAppMessage.setText("Appointment successfully made!");
+        }
+        catch (AppointmentPendingException e){
+            addAppMessage.setText(e.getMessage());
+        }
     }
+
 }
