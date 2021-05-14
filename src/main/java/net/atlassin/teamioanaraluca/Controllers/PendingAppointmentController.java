@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import net.atlassin.teamioanaraluca.Model.Appointment;
+import net.atlassin.teamioanaraluca.Model.PatientUsernameSchedule;
 import net.atlassin.teamioanaraluca.Model.WhoIsLoggedInfo;
 import net.atlassin.teamioanaraluca.Services.AppointmentsService;
 
@@ -41,7 +42,14 @@ public class PendingAppointmentController {
         }
     }
 
-    public void handleAcceptAppointment(ActionEvent acceptAppointment) {
+    public void handleAcceptAppointment(ActionEvent acceptAppointment) throws IOException {
+
+        PatientUsernameSchedule.setUsername(appointmentName.getText());
+        Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("AcceptAppointment.fxml"));
+        Stage window = (Stage) ((Node) acceptAppointment.getSource()).getScene().getWindow();
+        window.setTitle("DentistGUI");
+        window.setScene(new Scene(root2, 600, 460));
+        window.show();
 
     }
 
