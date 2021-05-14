@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="213.0" prefWidth="403.0" style="-fx-background-color: #D4F1F4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.atlassin.teamioanaraluca.Controllers.RejectAppointmentController">
+    <children>
+        <Button fx:id="goBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGoBackToPendingAppointments" prefHeight="25.0" prefWidth="96.0" style="-fx-background-color: #A7C7E7;" text="Go back" />
+        <Label layoutX="157.0" layoutY="55.0" text="Rejection reason" />
+        <TextField fx:id="rejection" layoutX="127.0" layoutY="81.0" />
+        <Button layoutX="141.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleRejectAppointment" style="-fx-background-color: #A7C7E7;" text="Reject appointment" />
+        <Text fx:id="rejectionMessage" layoutX="133.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+    </children>
+</AnchorPane>

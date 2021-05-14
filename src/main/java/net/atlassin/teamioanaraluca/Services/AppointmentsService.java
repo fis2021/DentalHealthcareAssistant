@@ -91,6 +91,7 @@ public class AppointmentsService {
         }
     }
 
+
     public static void acceptAppointment(String date, String hour) throws WrongDateException, WrongTimeException, EmptyDateFieldException, EmptyTimeFieldException {
 
         checkEmptyFieldsAcceptAppointment(date, hour);
@@ -106,6 +107,28 @@ public class AppointmentsService {
         newAppointment.setStatus("accepted");
         newAppointment.setDate(date);
         newAppointment.setHour(hour);
+        appointmentsRepository.update(and(eq("usernamePatient", PatientUsernameSchedule.getUsername()), eq("usernameDoctor", WhoIsLoggedInfo.getLoggedUsername()), eq("status", "pending")), newAppointment);
+
+    }
+    private static void checkEmptyFieldRejectAppointment(String rejection) throws EmptyRejectionFieldException{
+
+        if (rejection == "") {
+            throw new EmptyRejectionFieldException();
+        }
+    }
+    public static void rejectAppointment(String rejection) throws EmptyRejectionFieldException {
+
+        checkEmptyFieldRejectAppointment(rejection);
+        Appointment newAppointment = new Appointment();
+        for (Appointment appointment : appointmentsRepository.find()) {
+            if (Objects.equals(appointment.getUsernamePatient(), PatientUsernameSchedule.getUsername()) && Objects.equals(appointment.getUsernameDoctor(), WhoIsLoggedInfo.getLoggedUsername())) {
+                newAppointment = appointment;
+            }
+        }
+
+        newAppointment.setStatus("rejected");
+        newAppointment.setRejectionReason(rejection);
+
         appointmentsRepository.update(and(eq("usernamePatient", PatientUsernameSchedule.getUsername()), eq("usernameDoctor", WhoIsLoggedInfo.getLoggedUsername()), eq("status", "pending")), newAppointment);
 
     }
