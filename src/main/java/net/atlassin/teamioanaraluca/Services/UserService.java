@@ -176,11 +176,12 @@ public class UserService {
                 oku = 1;
                 if (PasswordAuthentication.authenticate(password, user.getPassword())) {
                     okp = 1;
+                    if (Objects.equals(role, user.getRole())) {
+                        okr = 1;
+                    }
                 }
             }
-            if (Objects.equals(role, user.getRole())) {
-                okr = 1;
-            }
+
 
         }
         if (oku == 0)
