@@ -4,19 +4,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="213.0" prefWidth="403.0" style="-fx-background-color: #D4F1F4;"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="net.atlassin.teamioanaraluca.Controllers.AcceptAppointmentController">
+<AnchorPane prefHeight="213.0" prefWidth="403.0" style="-fx-background-color: #FEC8D8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.atlassin.teamioanaraluca.Controllers.AcceptAppointmentController">
     <children>
-        <Button fx:id="goBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"
-                onAction="#handleGoBackToPendingAppointments" prefHeight="25.0" prefWidth="96.0"
-                style="-fx-background-color: #A7C7E7;" text="Go back"/>
-        <Label layoutX="40.0" layoutY="61.0" text="Date (dd/mm/yyyy)"/>
-        <Label layoutX="278.0" layoutY="61.0" text="Time (hh:mm)"/>
-        <TextField fx:id="date" layoutX="17.0" layoutY="87.0"/>
-        <TextField fx:id="time" layoutX="240.0" layoutY="87.0"/>
-        <Button layoutX="133.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleScheduleAppointment"
-                style="-fx-background-color: #A7C7E7;" text="Schedule appointment"/>
-        <Text fx:id="appointmentMessage" layoutX="133.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
+        <Button fx:id="goBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGoBackToPendingAppointments" prefHeight="25.0" prefWidth="96.0" style="-fx-background-color: #DABFDE;" text="Go back" />
+        <Label layoutX="40.0" layoutY="61.0" text="Date (dd/mm/yyyy)" />
+        <Label layoutX="278.0" layoutY="61.0" text="Time (hh:mm)" />
+        <TextField fx:id="date" layoutX="17.0" layoutY="87.0" />
+        <TextField fx:id="time" layoutX="240.0" layoutY="87.0" />
+        <Button layoutX="133.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleScheduleAppointment" style="-fx-background-color: #DABFDE;" text="Schedule appointment" />
+        <Text fx:id="appointmentMessage" layoutX="133.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" />
     </children>
 </AnchorPane>
