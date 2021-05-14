@@ -133,5 +133,20 @@ public class AppointmentsService {
 
     }
 
+    public static void finishAppointment(String userPatient, String userDoctor, String date){
+        //checkEmptyUser
+        Appointment newAppointment = new Appointment();
+        for (Appointment appointment : appointmentsRepository.find()) {
+            if (appointment.getUsernamePatient().equals(userPatient)&&appointment.getUsernameDoctor().equals(userDoctor)&&appointment.getDate().equals(date)) {
+                newAppointment = appointment;
+            }
+        }
+
+        newAppointment.setStatus("finished");
+
+        appointmentsRepository.update(and(eq("usernamePatient", userPatient), eq("usernameDoctor", userDoctor), eq("date",date)), newAppointment);
+
+    }
+
 
 }

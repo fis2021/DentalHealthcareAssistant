@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="406.0" prefWidth="401.0" style="-fx-background-color: #FEC8D8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.atlassin.teamioanaraluca.Controllers.TodaysAppointmentsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="406.0" prefWidth="401.0" style="-fx-background-color: #FEC8D8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.atlassin.teamioanaraluca.Controllers.TodaysAppointmentsController">
     <GridPane alignment="BOTTOM_CENTER" layoutX="1.0" layoutY="371.0" prefHeight="35.0" prefWidth="600.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.6" minWidth="10.0" prefWidth="199.6" />
@@ -17,7 +24,8 @@
          <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="37.600006103515625" vgrow="SOMETIMES" />
         </rowConstraints>
       <children>
-            <Button alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #DABFDE;" text="Finish appointment" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleFinishAppointment" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #DABFDE;" text="Finish appointment" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Text fx:id="finishMessage" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.73670172691345" GridPane.rowIndex="1" />
       </children>
        
     </GridPane>

@@ -32,6 +32,8 @@ public class TodaysAppointmentsController {
     public ListView<String> todaysAppointmentListView = new ListView<String>();
     @FXML
     public Text appointmentInfo;
+    @FXML
+    public Text finishMessage;
 
     public void initialize() throws IOException {
         updateWithTodaysAppointmentsListView();
@@ -71,6 +73,19 @@ public class TodaysAppointmentsController {
 
         return information;
     }
+
+    public void handleFinishAppointment() throws IOException{
+        if (todaysAppointmentListView.getSelectionModel().getSelectedItem()==null){
+            finishMessage.setText("Please select a user!");
+        }
+        else {
+        String currentDate = returnCurrentDate();
+        String patient = todaysAppointmentListView.getSelectionModel().getSelectedItem().toString();
+        AppointmentsService.finishAppointment(patient,WhoIsLoggedInfo.getLoggedUsername(),currentDate);
+        }
+        //updateWithTodaysAppointmentsListView();
+    }
+
 
     public void updateWithTodaysAppointmentsListView(){
         LocalDate currentDate = LocalDate.now();
