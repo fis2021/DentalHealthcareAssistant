@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="456.0" prefWidth="479.0"
+            style="-fx-background-color: #D4F1F4;" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="net.atlassin.teamioanaraluca.Controllers.AppointmentStatusController">
+    <ListView fx:id="appointmentStatusList" editable="true" layoutX="111.0" layoutY="95.0" prefHeight="303.0"
+              prefWidth="258.0"
+              style="-fx-background-color: #FFF1F2; -fx-border-width: 3; -fx-border-style: solid inside; -fx-border-color: #189AB4;"
+              AnchorPane.topAnchor="95.0"/>
+    <Button alignment="CENTER" contentDisplay="TOP" layoutX="26.0" layoutY="14.0" mnemonicParsing="false"
+            onAction="#handleGoBackToPatientGUI" prefHeight="36.0" prefWidth="155.0"
+            style="-fx-background-color: #A7C7E7;" text="Go back" textAlignment="CENTER"/>
+    <Label alignment="CENTER" layoutX="127.0" layoutY="57.0" prefHeight="32.0" prefWidth="226.0"
+           text="Appointment status">
+        <font>
+            <Font name="System Bold" size="22.0"/>
+        </font>
+    </Label>
+
+
+</AnchorPane>
