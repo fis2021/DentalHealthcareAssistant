@@ -7,7 +7,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="577.0" style="-fx-background-color: #D4F1F4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.atlassin.teamioanaraluca.Controllers.CabinetsServicesController">
     <children>
         <ListView fx:id="servicesList" layoutX="189.0" layoutY="80.0" prefHeight="240.0" prefWidth="200.0" style="-fx-border-width: 3; -fx-border-style: solid inside; -fx-border-color: #189AB4;" />
-        <Label alignment="CENTER" layoutX="189.0" layoutY="41.0" prefHeight="32.0" prefWidth="200.0" text="Cabinet's Services">
+        <Label alignment="CENTER" layoutX="189.0" layoutY="41.0" prefHeight="32.0" prefWidth="200.0" text="Cabinet's services">
             <font>
                 <Font name="System Bold" size="22.0" />
             </font>
