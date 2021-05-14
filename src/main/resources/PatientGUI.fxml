@@ -42,7 +42,8 @@
                         <Button fx:id="cabintesList" alignment="CENTER" mnemonicParsing="false"
                                 onAction="#handleViewCabinetsAction" prefHeight="34.0" prefWidth="290.0"
                                 style="-fx-background-color: #A7C7E7;" text="View cabinets list"/>
-                        <Button alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0"
+                        <Button fx:id="appointmentStatus" alignment="CENTER" maxWidth="-Infinity"
+                                mnemonicParsing="false" onAction="#handleAppointmentStatus" prefHeight="34.0"
                                 prefWidth="294.0" style="-fx-background-color: #A7C7E7;" text="Appointment status"
                                 GridPane.columnIndex="1"/>
                     </children>
