@@ -53,9 +53,16 @@ public class PendingAppointmentController {
 
     }
 
-    public void handleRejectAppointment(ActionEvent rejectAppointment) {
-
+    public void handleRejectAppointment(ActionEvent rejectAppointment) throws IOException {
+        PatientUsernameSchedule.setUsername(appointmentName.getText());
+        Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("RejectAppointment.fxml"));
+        Stage window = (Stage) ((Node) rejectAppointment.getSource()).getScene().getWindow();
+        window.setTitle("RejectAppointment");
+        window.setScene(new Scene(root2, 600, 460));
+        window.show();
     }
+
+
 
     public void handleGoBackToDentistGUI(ActionEvent goBackToDentistGUI) throws IOException {
         Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("DentistGUI.fxml"));
