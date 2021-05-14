@@ -133,5 +133,42 @@ public class AppointmentsService {
 
     }
 
+    public static void finishAppointment(String userPatient, String userDoctor, String date){
+        //checkEmptyUser
+        Appointment newAppointment = new Appointment();
+        for (Appointment appointment : appointmentsRepository.find()) {
+            if (appointment.getUsernamePatient().equals(userPatient)&&appointment.getUsernameDoctor().equals(userDoctor)&&appointment.getDate().equals(date)) {
+                newAppointment = appointment;
+            }
+        }
+
+        newAppointment.setStatus("finished");
+
+        appointmentsRepository.update(and(eq("usernamePatient", userPatient), eq("usernameDoctor", userDoctor), eq("date",date),eq("prescription","")), newAppointment);
+
+    }
+
+
+
+
+    public static void addPrescription(String userPatient, String userDoctor, String date, String prescription) throws EmptyTextfieldsException{
+        checkEmptyTextFields(prescription);
+        Appointment newAppointment = new Appointment();
+        for (Appointment appointment : appointmentsRepository.find()) {
+            if (appointment.getUsernamePatient().equals(userPatient)&&appointment.getUsernameDoctor().equals(userDoctor)&&appointment.getDate().equals(date)) {
+                newAppointment = appointment;
+            }
+        }
+
+        newAppointment.setPrescription(prescription);
+
+        appointmentsRepository.update(and(eq("usernamePatient", userPatient), eq("usernameDoctor", userDoctor), eq("date",date),eq("status","finished"),eq("prescription","")), newAppointment);
+
+    }
+
+    private static void checkEmptyTextFields(String description) throws EmptyTextfieldsException {
+        if (description.equals(""))
+            throw new EmptyTextfieldsException();
+    }
 
 }
