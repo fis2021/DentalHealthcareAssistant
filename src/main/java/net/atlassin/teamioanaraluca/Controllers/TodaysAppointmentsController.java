@@ -8,10 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import net.atlassin.teamioanaraluca.Exceptions.EmptyTextfieldsException;
 import net.atlassin.teamioanaraluca.Model.Appointment;
 import net.atlassin.teamioanaraluca.Model.DentistServices;
 import net.atlassin.teamioanaraluca.Model.User;
@@ -27,22 +30,36 @@ import java.time.format.DateTimeFormatter;
 
 public class TodaysAppointmentsController {
     private static ObjectRepository<Appointment> appointmentsRepository = AppointmentsService.getAppointmentsRepository();
-
+    private String patient;
     @FXML
     public ListView<String> todaysAppointmentListView = new ListView<String>();
     @FXML
     public Text appointmentInfo;
     @FXML
     public Text finishMessage;
+    @FXML
+    public Button finishButton;
+    @FXML
+    public Text prescriptionMessage;
+    @FXML
+    public TextField prescriptionDescription;
+    @FXML
+    public Button sendPrescription;
 
     public void initialize() throws IOException {
+        prescriptionDescription.setVisible(false);
+        prescriptionMessage.setVisible(false);
+        sendPrescription.setVisible(false);
+        finishButton.setVisible(true);
         updateWithTodaysAppointmentsListView();
         todaysAppointmentListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
+                if (todaysAppointmentListView.getSelectionModel().getSelectedItem()!=null){
                 String usernamePatientClicked = todaysAppointmentListView.getSelectionModel().getSelectedItem().toString();
                 appointmentInfo.setText(getInfoPatient(usernamePatientClicked));
+                }
             }
         });
     }
@@ -80,12 +97,30 @@ public class TodaysAppointmentsController {
         }
         else {
         String currentDate = returnCurrentDate();
-        String patient = todaysAppointmentListView.getSelectionModel().getSelectedItem().toString();
+        this.patient = todaysAppointmentListView.getSelectionModel().getSelectedItem().toString();
         AppointmentsService.finishAppointment(patient,WhoIsLoggedInfo.getLoggedUsername(),currentDate);
+        finishButton.setVisible(false);
+        prescriptionDescription.setVisible(true);
+        prescriptionMessage.setVisible(true);
+        sendPrescription.setVisible(true);
         }
         //updateWithTodaysAppointmentsListView();
     }
 
+    public void handleSendPrescription() throws IOException{
+        try{
+            AppointmentsService.addPrescription(patient,WhoIsLoggedInfo.getLoggedUsername(),returnCurrentDate(),prescriptionDescription.getText());
+            prescriptionDescription.setVisible(false);
+            prescriptionMessage.setVisible(false);
+            sendPrescription.setVisible(false);
+            finishButton.setVisible(true);
+            todaysAppointmentListView.getItems().clear();
+            updateWithTodaysAppointmentsListView();
+        }
+        catch (EmptyTextfieldsException e){
+            prescriptionDescription.setText(e.getMessage());
+        }
+    }
 
     public void updateWithTodaysAppointmentsListView(){
         LocalDate currentDate = LocalDate.now();
