@@ -1,11 +1,8 @@
 package net.atlassin.teamioanaraluca.Services;
 
-import net.atlassin.teamioanaraluca.Exceptions.InvalidCredentialsException;
-import net.atlassin.teamioanaraluca.Exceptions.InvalidCustomerEmailException;
-import net.atlassin.teamioanaraluca.Exceptions.InvalidDoctorEmailException;
+import net.atlassin.teamioanaraluca.Exceptions.*;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
-import net.atlassin.teamioanaraluca.Exceptions.UsernameAlreadyExistsException;
 import net.atlassin.teamioanaraluca.Model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -15,10 +12,6 @@ import java.util.Objects;
 import java.util.regex.*;
 
 import static net.atlassin.teamioanaraluca.Services.FileSystemService.getPathToFile;
-
-import net.atlassin.teamioanaraluca.Exceptions.UsernameDoesNotExistException;
-import net.atlassin.teamioanaraluca.Exceptions.WrongPasswordException;
-import net.atlassin.teamioanaraluca.Exceptions.WrongRoleException;
 
 public class UserService {
 
@@ -169,7 +162,7 @@ public class UserService {
     }
 
 
-    public static void checkUserCredentials(String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
+    public static void checkUserCredentials(String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException, EmptyFieldUsernameLoginException, EmptyFieldPasswordLoginException {
         int oku = 0, okp = 0, okr = 0;
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername())) {
@@ -190,6 +183,10 @@ public class UserService {
             throw new WrongRoleException();
         if (okp == 0)
             throw new WrongPasswordException();
+        if(username =="")
+            throw new EmptyFieldUsernameLoginException();
+        if(password =="")
+            throw new EmptyFieldPasswordLoginException();
 
     }
 
