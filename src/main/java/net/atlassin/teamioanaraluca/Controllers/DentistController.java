@@ -46,4 +46,12 @@ public class DentistController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void handleGoToTodaysAppointments(javafx.event.ActionEvent todaysAppointments) throws IOException{
+        Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("TodaysAppointmentsGUI.fxml"));
+        Stage window = (Stage) ((Node) todaysAppointments.getSource()).getScene().getWindow();
+        window.setTitle("Today's appointments");
+        window.setScene(new Scene(root1, 600, 406));
+        window.show();
+    }
 }
