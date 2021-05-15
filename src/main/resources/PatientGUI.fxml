@@ -41,6 +41,7 @@
                         <Image url="@patientgui.png" />
                     </image>
                 </ImageView>
+            <Button alignment="CENTER" layoutX="487.0" layoutY="293.0" mnemonicParsing="false" onAction="#goBackToLogin" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #A7C7E7;" text="Log Out" />
             </children>
         </AnchorPane>
     </children>
