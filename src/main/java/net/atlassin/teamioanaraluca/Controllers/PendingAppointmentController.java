@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import net.atlassin.teamioanaraluca.Exceptions.EmptyTextfieldsException;
+import net.atlassin.teamioanaraluca.Exceptions.NoPendingAppointmentException;
 import net.atlassin.teamioanaraluca.Model.Appointment;
 import net.atlassin.teamioanaraluca.Model.PatientUsernameSchedule;
 import net.atlassin.teamioanaraluca.Model.WhoIsLoggedInfo;
@@ -49,6 +50,7 @@ public class PendingAppointmentController {
     public void handleAcceptAppointment(ActionEvent acceptAppointment) throws IOException {
         try{
         checkEmptyTextFieldsPendingAppointment(appointmentName.getText());
+        checkPatientHasPendingAppointment(appointmentName.getText());
         PatientUsernameSchedule.setUsername(appointmentName.getText());
         Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("AcceptAppointment.fxml"));
         Stage window = (Stage) ((Node) acceptAppointment.getSource()).getScene().getWindow();
@@ -59,12 +61,16 @@ public class PendingAppointmentController {
         catch(EmptyTextfieldsException e){
             pendingAppointmentMessage.setText(e.getMessage());
         }
+        catch(NoPendingAppointmentException e){
+            pendingAppointmentMessage.setText(e.getMessage());
+        }
 
     }
 
     public void handleRejectAppointment(ActionEvent rejectAppointment) throws IOException {
         try{
         checkEmptyTextFieldsPendingAppointment(appointmentName.getText());
+        checkPatientHasPendingAppointment(appointmentName.getText());
         PatientUsernameSchedule.setUsername(appointmentName.getText());
         Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("RejectAppointment.fxml"));
         Stage window = (Stage) ((Node) rejectAppointment.getSource()).getScene().getWindow();
@@ -72,6 +78,8 @@ public class PendingAppointmentController {
         window.setScene(new Scene(root2, 600, 460));
         window.show();
         }catch (EmptyTextfieldsException e){
+            pendingAppointmentMessage.setText(e.getMessage());
+        }catch(NoPendingAppointmentException e){
             pendingAppointmentMessage.setText(e.getMessage());
         }
     }
@@ -81,6 +89,18 @@ public class PendingAppointmentController {
             throw new EmptyTextfieldsException();
     }
 
+    public static void checkPatientHasPendingAppointment(String patientUsername) throws NoPendingAppointmentException {
+        int exists = 0;
+        for (Appointment appointment : AppointmentsService.appointmentsRepository.find()) {
+            if (Objects.equals(appointment.getStatus(), "pending") && Objects.equals(appointment.getUsernameDoctor(), WhoIsLoggedInfo.getLoggedUsername())) {
+                if (patientUsername.equals(appointment.getUsernamePatient()))
+                    exists = 1;
+            }
+        }
+
+        if (exists == 0)
+            throw new NoPendingAppointmentException();
+    }
 
     public void handleGoBackToDentistGUI(ActionEvent goBackToDentistGUI) throws IOException {
         Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("DentistGUI.fxml"));
