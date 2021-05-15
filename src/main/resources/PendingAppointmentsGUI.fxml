@@ -4,32 +4,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="456.0" prefWidth="479.0"
-            style="-fx-background-color: #D4F1F4;" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="net.atlassin.teamioanaraluca.Controllers.PendingAppointmentController">
-    <ListView fx:id="appointmentsList" editable="true" layoutX="136.0" layoutY="88.0" prefHeight="230.0"
-              prefWidth="207.0"
-              style="-fx-background-color: #FFF1F2; -fx-border-width: 3; -fx-border-style: solid inside; -fx-border-color: #189AB4;"
-              AnchorPane.topAnchor="88.0"/>
-    <Button alignment="CENTER" contentDisplay="TOP" layoutX="26.0" layoutY="14.0" mnemonicParsing="false"
-            onAction="#handleGoBackToDentistGUI" prefHeight="36.0" prefWidth="155.0"
-            style="-fx-background-color: #A7C7E7;" text="Go back" textAlignment="CENTER"/>
-    <Label alignment="CENTER" layoutX="118.0" layoutY="56.0" prefHeight="32.0" prefWidth="243.0"
-           text="Pending appointments">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="456.0" prefWidth="479.0" style="-fx-background-color: #FEC8D8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.atlassin.teamioanaraluca.Controllers.PendingAppointmentController">
+    <ListView fx:id="appointmentsList" editable="true" layoutX="136.0" layoutY="88.0" prefHeight="230.0" prefWidth="207.0" style="-fx-background-color: #FFF1F2; -fx-border-width: 3; -fx-border-style: solid inside; -fx-border-color: #6232b1;" AnchorPane.topAnchor="88.0" />
+    <Button alignment="CENTER" contentDisplay="TOP" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGoBackToDentistGUI" prefHeight="36.0" prefWidth="155.0" style="-fx-background-color: #DABFDE;" text="Go back" textAlignment="CENTER" />
+    <Label alignment="CENTER" layoutX="118.0" layoutY="56.0" prefHeight="32.0" prefWidth="243.0" text="Pending appointments">
         <font>
-            <Font name="System Bold" size="22.0"/>
+            <Font name="System Bold" size="22.0" />
         </font>
     </Label>
-    <Label alignment="CENTER" layoutX="108.0" layoutY="330.0" prefHeight="17.0" prefWidth="265.0"
-           text="Fill in the appointment that you want to schedule"/>
-    <TextField fx:id="appointmentName" layoutX="165.0" layoutY="356.0"/>
-    <Button fx:id="acceptAppointment" layoutX="136.0" layoutY="404.0" mnemonicParsing="false"
-            onAction="#handleAcceptAppointment" prefHeight="25.0" prefWidth="73.0"
-            style="-fx-background-color: #A7C7E7;" text="Accept"/>
-    <Button fx:id="rejectAppointment" layoutX="264.0" layoutY="404.0" mnemonicParsing="false"
-            onAction="#handleRejectAppointment" prefHeight="25.0" prefWidth="73.0"
-            style="-fx-background-color: #A7C7E7;" text="Reject"/>
+    <Label alignment="CENTER" layoutX="108.0" layoutY="330.0" prefHeight="17.0" prefWidth="265.0" text="Fill in the appointment that you want to schedule" />
+    <TextField fx:id="appointmentName" layoutX="165.0" layoutY="356.0" />
+    <Button fx:id="acceptAppointment" layoutX="136.0" layoutY="404.0" mnemonicParsing="false" onAction="#handleAcceptAppointment" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #DABFDE;" text="Accept" />
+    <Button fx:id="rejectAppointment" layoutX="264.0" layoutY="404.0" mnemonicParsing="false" onAction="#handleRejectAppointment" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #DABFDE;" text="Reject" />
 
 
 </AnchorPane>

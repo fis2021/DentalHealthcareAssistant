@@ -54,4 +54,14 @@ public class DentistController {
         window.setScene(new Scene(root1, 600, 406));
         window.show();
     }
+
+    public void goFromDentistToLogin(javafx.event.ActionEvent goBackToLogin) throws IOException{
+        Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("Login.fxml"));
+        Stage window = (Stage) ((Node) goBackToLogin.getSource()).getScene().getWindow();
+        window.setTitle("Dental Healthcare Assistant");
+        window.setScene(new Scene(root1, 600, 460));
+        window.show();
+    }
+
+
 }

@@ -9,7 +9,7 @@
     <children>
         <Pane prefHeight="78.0" prefWidth="600.0" style="-fx-background-color: #a442f5;">
             <children>
-                <ImageView blendMode="MULTIPLY" fitHeight="78.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView blendMode="DARKEN" fitHeight="78.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@logo.png" />
                     </image>
@@ -43,6 +43,7 @@
                         <Image url="@gui.jpg" />
                     </image>
                 </ImageView>
+            <Button alignment="CENTER" layoutX="469.0" layoutY="295.0" mnemonicParsing="false" onAction="#goFromDentistToLogin" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: #DABFDE;" text="Log Out" />
             </children>
         </AnchorPane>
     </children>
