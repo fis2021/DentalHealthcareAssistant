@@ -137,14 +137,15 @@ public class AppointmentsService {
         //checkEmptyUser
         Appointment newAppointment = new Appointment();
         for (Appointment appointment : appointmentsRepository.find()) {
-            if (appointment.getUsernamePatient().equals(userPatient)&&appointment.getUsernameDoctor().equals(userDoctor)&&appointment.getDate().equals(date)) {
-                newAppointment = appointment;
+            if (appointment.getStatus().equals("accepted"))
+                if (appointment.getUsernamePatient().equals(userPatient)&&appointment.getUsernameDoctor().equals(userDoctor)&&appointment.getDate().equals(date)) {
+                    newAppointment = appointment;
             }
         }
 
         newAppointment.setStatus("finished");
 
-        appointmentsRepository.update(and(eq("usernamePatient", userPatient), eq("usernameDoctor", userDoctor), eq("date",date),eq("prescription","")), newAppointment);
+        appointmentsRepository.update(and(and(and(eq("usernamePatient", userPatient), eq("usernameDoctor", userDoctor)), eq("date",date)),eq("status","accepted")), newAppointment);
 
     }
 
@@ -155,15 +156,16 @@ public class AppointmentsService {
         checkEmptyTextFields(prescription);
         Appointment newAppointment = new Appointment();
         for (Appointment appointment : appointmentsRepository.find()) {
-            if (appointment.getUsernamePatient().equals(userPatient)&&appointment.getUsernameDoctor().equals(userDoctor)&&appointment.getDate().equals(date)) {
-                newAppointment = appointment;
+            if (appointment.getPrescription().equals(""))
+                if (appointment.getStatus().equals("finished"))
+                    if (appointment.getUsernamePatient().equals(userPatient)&&appointment.getUsernameDoctor().equals(userDoctor)&&appointment.getDate().equals(date)) {
+                        newAppointment = appointment;
             }
         }
 
         newAppointment.setPrescription(prescription);
 
-        appointmentsRepository.update(and(eq("usernamePatient", userPatient), eq("usernameDoctor", userDoctor), eq("date",date),eq("status","finished"),eq("prescription","")), newAppointment);
-
+        appointmentsRepository.update(and(and(and(eq("usernamePatient", userPatient), eq("usernameDoctor", userDoctor)), eq("date",date)),eq("status","finished")), newAppointment);
     }
 
     private static void checkEmptyTextFields(String description) throws EmptyTextfieldsException {

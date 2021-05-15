@@ -42,7 +42,7 @@ public class TodaysAppointmentsController {
     @FXML
     public Text prescriptionMessage;
     @FXML
-    public TextField prescriptionDescription;
+    private TextField prescriptionDescription;
     @FXML
     public Button sendPrescription;
 
@@ -109,7 +109,8 @@ public class TodaysAppointmentsController {
 
     public void handleSendPrescription() throws IOException{
         try{
-            AppointmentsService.addPrescription(patient,WhoIsLoggedInfo.getLoggedUsername(),returnCurrentDate(),prescriptionDescription.getText());
+            String currentDate = returnCurrentDate();
+            AppointmentsService.addPrescription(patient,WhoIsLoggedInfo.getLoggedUsername(),currentDate,prescriptionDescription.getText());
             prescriptionDescription.setVisible(false);
             prescriptionMessage.setVisible(false);
             sendPrescription.setVisible(false);
@@ -118,7 +119,7 @@ public class TodaysAppointmentsController {
             updateWithTodaysAppointmentsListView();
         }
         catch (EmptyTextfieldsException e){
-            prescriptionDescription.setText(e.getMessage());
+            prescriptionMessage.setText(e.getMessage());
         }
     }
 

@@ -7,7 +7,7 @@ import net.atlassin.teamioanaraluca.Model.DentistServices;
 import net.atlassin.teamioanaraluca.Model.WhoIsLoggedInfo;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
-
+import static org.dizitart.no2.objects.filters.ObjectFilters.and;
 import java.util.Objects;
 
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
@@ -42,7 +42,7 @@ public class DentistFacilitiesService {
             }
         }
 
-        servicesRepository.remove(eq("description", description), service_aux);
+        servicesRepository.remove(and(eq("username",username),eq("description", description)), service_aux);
     }
 
     public static void editService(String username, String descriptionOld, String descriptionNew) throws EmptyTextfieldsException, DentistServiceExistsException {
@@ -57,7 +57,7 @@ public class DentistFacilitiesService {
         }
         if (!descriptionNew.equals(""))
             service_aux.setDescription(descriptionNew);
-        servicesRepository.update(eq("description", descriptionOld), service_aux);
+        servicesRepository.update(and(eq("username",username),eq("description", descriptionOld)), service_aux);
     }
 
     private static void checkEmptyTextFields(String description) throws EmptyTextfieldsException {

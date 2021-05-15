@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import net.atlassin.teamioanaraluca.Model.Appointment;
+import net.atlassin.teamioanaraluca.Model.WhoIsLoggedInfo;
 import net.atlassin.teamioanaraluca.Services.AppointmentsService;
 
 import java.io.IOException;
@@ -23,8 +24,10 @@ public class AppointmentStatusController {
     public void setAppointmentStatusList() {
 
         String aux;
+        String patient = WhoIsLoggedInfo.getLoggedUsername();
 
         for (Appointment appointment : AppointmentsService.appointmentsRepository.find()) {
+            if (patient.equals(appointment.getUsernamePatient()))
             if (Objects.equals(appointment.getStatus(), "accepted")) {
 
                 aux = appointment.getStatus() + ": Doctor " + appointment.getUsernameDoctor() + " " + appointment.getDate() + " " + appointment.getHour();
@@ -33,6 +36,7 @@ public class AppointmentStatusController {
         }
 
         for (Appointment appointment : AppointmentsService.appointmentsRepository.find()) {
+            if (patient.equals(appointment.getUsernamePatient()))
             if (Objects.equals(appointment.getStatus(), "pending")) {
 
                 aux = appointment.getStatus() + ": Doctor " + appointment.getUsernameDoctor();
@@ -41,6 +45,7 @@ public class AppointmentStatusController {
         }
 
         for (Appointment appointment : AppointmentsService.appointmentsRepository.find()) {
+            if (patient.equals(appointment.getUsernamePatient()))
             if (Objects.equals(appointment.getStatus(), "rejected")) {
 
                 aux = appointment.getStatus() + ": Doctor " + appointment.getUsernameDoctor() + " " + appointment.getRejectionReason();
@@ -49,6 +54,7 @@ public class AppointmentStatusController {
         }
 
         for (Appointment appointment : AppointmentsService.appointmentsRepository.find()) {
+            if (patient.equals(appointment.getUsernamePatient()))
             if (Objects.equals(appointment.getStatus(), "finished")) {
 
                 aux = appointment.getStatus() + ": Doctor " + appointment.getUsernameDoctor() + " " + appointment.getPrescription();

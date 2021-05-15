@@ -10,10 +10,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import net.atlassin.teamioanaraluca.Exceptions.EmptyFieldUsernameLoginException;
+import net.atlassin.teamioanaraluca.Exceptions.EmptyFieldPasswordLoginException;
 import net.atlassin.teamioanaraluca.Exceptions.UsernameDoesNotExistException;
 import net.atlassin.teamioanaraluca.Exceptions.WrongPasswordException;
 import net.atlassin.teamioanaraluca.Exceptions.WrongRoleException;
-import net.atlassin.teamioanaraluca.Model.DentistServices;
 import net.atlassin.teamioanaraluca.Model.WhoIsLoggedInfo;
 import net.atlassin.teamioanaraluca.Services.UserService;
 
@@ -62,6 +63,12 @@ public class LoginController {
         } catch (WrongRoleException e) {
             loginUsernameMessage.setText((e.getMessage()));
         } catch (WrongPasswordException e) {
+            loginUsernameMessage.setText(e.getMessage());
+        }
+        catch (EmptyFieldUsernameLoginException e) {
+            loginUsernameMessage.setText(e.getMessage());
+        }
+        catch (EmptyFieldPasswordLoginException e) {
             loginUsernameMessage.setText(e.getMessage());
         }
     }
