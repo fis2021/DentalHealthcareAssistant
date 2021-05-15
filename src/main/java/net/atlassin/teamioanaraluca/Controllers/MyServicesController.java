@@ -77,6 +77,7 @@ public class MyServicesController {
                 addMessage.setText("Service deleted successfully !");
             }
         }
+        serviceListView.getItems().clear();
         updateListView();
     }
 
