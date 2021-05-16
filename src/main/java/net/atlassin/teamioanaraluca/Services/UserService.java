@@ -8,6 +8,7 @@ import net.atlassin.teamioanaraluca.Model.User;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.*;
 
@@ -16,13 +17,24 @@ import static net.atlassin.teamioanaraluca.Services.FileSystemService.getPathToF
 public class UserService {
 
     public static ObjectRepository<User> userRepository;
+    private static Nitrite database;
 
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+        FileSystemService.initDirectory();
+        database = Nitrite.builder()
                 .filePath(getPathToFile("registration-example.db").toFile())
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
+    }
+
+    public static void closeDatabase() {
+        database.close();
+    }
+
+    public static List<User> getAllUsers() {
+
+        return userRepository.find().toList();
     }
 
     public static void addUser(String username, String password, String role, String name, String email, String phoneNumber) throws UsernameAlreadyExistsException, InvalidDoctorEmailException, InvalidCustomerEmailException, InvalidCredentialsException {
@@ -177,16 +189,17 @@ public class UserService {
 
 
         }
+        if (username == "")
+            throw new EmptyFieldUsernameLoginException();
+        if (password == "")
+            throw new EmptyFieldPasswordLoginException();
         if (oku == 0)
             throw new UsernameDoesNotExistException(username);
-        if (okr == 0)
-            throw new WrongRoleException();
         if (okp == 0)
             throw new WrongPasswordException();
-        if(username =="")
-            throw new EmptyFieldUsernameLoginException();
-        if(password =="")
-            throw new EmptyFieldPasswordLoginException();
+        if (okr == 0)
+            throw new WrongRoleException();
+
 
     }
 
@@ -195,7 +208,7 @@ public class UserService {
      *
      * @return a secure authentication token to be stored for later authentication
      */
-    private static String encodePassword(String password) {
+    public static String encodePassword(String password) {
         PasswordAuthentication passwordAuthenticationObject = new PasswordAuthentication();
         return passwordAuthenticationObject.hash(password.toCharArray());
     }

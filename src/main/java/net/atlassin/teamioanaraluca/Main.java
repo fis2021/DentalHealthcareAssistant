@@ -17,7 +17,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        initDirectory();
         UserService.initDatabase();
         DentistFacilitiesService.initDatabase();
         AppointmentsService.initDatabase();
@@ -25,12 +24,6 @@ public class Main extends Application {
         primaryStage.setTitle("Dental Healthcare Assistant");
         primaryStage.setScene(new Scene(root, 600, 460));
         primaryStage.show();
-    }
-
-    private void initDirectory() {
-        Path applicationHomePath = FileSystemService.APPLICATION_HOME_PATH;
-        if (!Files.exists(applicationHomePath))
-            applicationHomePath.toFile().mkdirs();
     }
 
 

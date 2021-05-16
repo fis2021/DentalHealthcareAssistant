@@ -95,9 +95,11 @@ public class MyServicesController {
 
     public void handleSaveEditChanges() throws Exception{
         try{
+            if (serviceListView.getSelectionModel().getSelectedItem()!=null){
             DentistFacilitiesService.editService(WhoIsLoggedInfo.getLoggedUsername(),serviceListView.getSelectionModel().getSelectedItem().toString(),serviceEdit.getText());
             updateListView();
-            addMessage.setText("Service edited successfully !");
+            addMessage.setText("Service edited successfully !");}
+            else addMessage.setText("No service selected!");
             editMessage.setVisible(false);
             serviceEdit.setVisible(false);
             saveChangesButton.setVisible(false);
