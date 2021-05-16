@@ -4,27 +4,37 @@ import net.atlassin.teamioanaraluca.Exceptions.CabinetDoesNotExist;
 import net.atlassin.teamioanaraluca.Exceptions.DentistServiceExistsException;
 import net.atlassin.teamioanaraluca.Exceptions.EmptyTextfieldsException;
 import net.atlassin.teamioanaraluca.Model.DentistServices;
+import net.atlassin.teamioanaraluca.Model.User;
 import net.atlassin.teamioanaraluca.Model.WhoIsLoggedInfo;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import static org.dizitart.no2.objects.filters.ObjectFilters.and;
+
+import java.util.List;
 import java.util.Objects;
 
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 
 public class DentistFacilitiesService {
     public static ObjectRepository<DentistServices> servicesRepository;
-
+    private static Nitrite database;
     public static ObjectRepository<DentistServices> getServicesRepository() {
         return servicesRepository;
     }
 
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+                 database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("dental-healthcare-services.db").toFile())
                 .openOrCreate("test", "test");
 
         servicesRepository = database.getRepository(DentistServices.class);
+    }
+
+    public static Nitrite getDatabase(){return database;}
+
+    public static List<DentistServices> getAllServices() {
+
+        return servicesRepository.find().toList();
     }
 
     public static void addService(String username, String description) throws EmptyTextfieldsException, DentistServiceExistsException {

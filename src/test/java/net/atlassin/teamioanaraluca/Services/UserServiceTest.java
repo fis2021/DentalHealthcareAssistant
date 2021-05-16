@@ -19,7 +19,6 @@ class UserServiceTest {
 
     @BeforeAll
     static void beforeAll() {
-
         System.out.println("Before Class");
     }
 
