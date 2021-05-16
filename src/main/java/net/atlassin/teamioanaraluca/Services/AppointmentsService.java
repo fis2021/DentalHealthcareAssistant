@@ -11,21 +11,29 @@ import org.dizitart.no2.objects.ObjectRepository;
 import static org.dizitart.no2.objects.filters.ObjectFilters.and;
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 
+import java.util.List;
 import java.util.Objects;
 
 public class AppointmentsService {
     public static ObjectRepository<Appointment> appointmentsRepository;
-
+    private static Nitrite database;
     public static ObjectRepository<Appointment> getAppointmentsRepository() {
         return appointmentsRepository;
     }
 
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+         database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("dental-healthcare-appointments.db").toFile())
                 .openOrCreate("test", "test");
 
         appointmentsRepository = database.getRepository(Appointment.class);
+    }
+
+    public static Nitrite getDatabase(){return database;}
+
+    public static List<Appointment> getAllAppointments() {
+
+        return appointmentsRepository.find().toList();
     }
 
     public static void addAppointment(String usernamePatient, String usernameDoctor, String hour, String date, String status, String rejectionReason, String prescription) throws AppointmentPendingException {
