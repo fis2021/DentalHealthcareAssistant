@@ -12,7 +12,7 @@
             <Font name="System Bold" size="22.0" />
         </font>
     </Label>
-    <Label alignment="CENTER" layoutX="108.0" layoutY="330.0" prefHeight="17.0" prefWidth="265.0" text="Fill in the appointment that you want to schedule" />
+    <Label fx:id="pendingAppointmentMessage" alignment="CENTER" layoutX="108.0" layoutY="330.0" prefHeight="17.0" prefWidth="265.0" text="Fill in the appointment that you want to schedule" />
     <TextField fx:id="appointmentName" layoutX="165.0" layoutY="356.0" />
     <Button fx:id="acceptAppointment" layoutX="136.0" layoutY="404.0" mnemonicParsing="false" onAction="#handleAcceptAppointment" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #DABFDE;" text="Accept" />
     <Button fx:id="rejectAppointment" layoutX="264.0" layoutY="404.0" mnemonicParsing="false" onAction="#handleRejectAppointment" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #DABFDE;" text="Reject" />

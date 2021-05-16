@@ -7,9 +7,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import net.atlassin.teamioanaraluca.Exceptions.EmptyTextfieldsException;
 import net.atlassin.teamioanaraluca.Model.Appointment;
 import net.atlassin.teamioanaraluca.Model.PatientUsernameSchedule;
 import net.atlassin.teamioanaraluca.Model.WhoIsLoggedInfo;
@@ -27,7 +30,8 @@ public class PendingAppointmentController {
     public Button acceptAppointment;
     @FXML
     public Button rejectAppointment;
-
+    @FXML
+    public Label pendingAppointmentMessage;
 
     public void setAppointmentsList() {
 
@@ -43,25 +47,39 @@ public class PendingAppointmentController {
     }
 
     public void handleAcceptAppointment(ActionEvent acceptAppointment) throws IOException {
-
+        try{
+        checkEmptyTextFieldsPendingAppointment(appointmentName.getText());
         PatientUsernameSchedule.setUsername(appointmentName.getText());
         Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("AcceptAppointment.fxml"));
         Stage window = (Stage) ((Node) acceptAppointment.getSource()).getScene().getWindow();
         window.setTitle("DentistGUI");
         window.setScene(new Scene(root2, 600, 460));
         window.show();
+        }
+        catch(EmptyTextfieldsException e){
+            pendingAppointmentMessage.setText(e.getMessage());
+        }
 
     }
 
     public void handleRejectAppointment(ActionEvent rejectAppointment) throws IOException {
+        try{
+        checkEmptyTextFieldsPendingAppointment(appointmentName.getText());
         PatientUsernameSchedule.setUsername(appointmentName.getText());
         Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("RejectAppointment.fxml"));
         Stage window = (Stage) ((Node) rejectAppointment.getSource()).getScene().getWindow();
         window.setTitle("RejectAppointment");
         window.setScene(new Scene(root2, 600, 460));
         window.show();
+        }catch (EmptyTextfieldsException e){
+            pendingAppointmentMessage.setText(e.getMessage());
+        }
     }
 
+    private static void checkEmptyTextFieldsPendingAppointment(String description) throws EmptyTextfieldsException {
+        if (description.equals(""))
+            throw new EmptyTextfieldsException();
+    }
 
 
     public void handleGoBackToDentistGUI(ActionEvent goBackToDentistGUI) throws IOException {
