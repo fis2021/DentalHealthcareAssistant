@@ -7,8 +7,10 @@ plugins {
 
 javafx {
     version = "15.0.1"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    modules = ['javafx.controls', 'javafx.fxml']
 }
+
+
 
 repositories {
     mavenLocal()
@@ -42,6 +44,6 @@ dependencies {
 
 mainClassName = 'net.atlassin.teamioanaraluca.Main'
 
-test{
+test {
     useJUnitPlatform()
 }
